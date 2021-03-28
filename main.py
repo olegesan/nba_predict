@@ -2,9 +2,11 @@ from nba_api.stats.endpoints  import leaguegamelog, commonplayerinfo, boxscoretr
 import requests
 from os import mkdir
 import json
-years = [13]
-games_info = {}
+years = [16,17,18,19]
+
+# mkdir("./all_games_jsons")
 for year in years:
+    games_info = {}
     try:
         season = leaguegamelog.LeagueGameLog(season=f"20{year}-{year+1}")
         try:
@@ -17,10 +19,10 @@ for year in years:
             print("timeout inside second except")
     except requests.exceptions.Timeout:
         print("timeout insdie first excepty")
+    f = open(f"./all_games_jsons/all_games20{year}-{year+1}.json", "w")
+    json.dump(games_info, f)
+    f.close()
 
-f = open("./all_games12-13", "w")
-json.dump(games_info,f)
-f.close()
 # f.write(season_19_20_games.get_normalized_json())
 # f.close()
 # print(season_19_20_games.get_json())
