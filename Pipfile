@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 requests = "*"
 nba-api = "*"
+numpy = "*"
+pandas = "*"
 
 [dev-packages]
 
