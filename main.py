@@ -69,10 +69,10 @@ def createGameScoreCSV(file):
                 GameScore = computeGameScore(PTS, FG, FGA, FTA, FT, OREB, DREB, STL, AST, BLK, PF, TO)
                 TEAM_ABBRV = player["TEAM_ABBREVIATION"]
                 WIN = 1 if TEAM_ABBRV == winner else 0
-                players_list.append([id, name, PTS, FG, FGA, FTA, FT, OREB, DREB, STL, AST, BLK, PF, TO, PLUS_MINUS, MIN, GameScore, WIN])
+                players_list.append([id, name, PTS, FG, FGA, FTA, FT, OREB, DREB, STL, AST, BLK, PF, TO, PLUS_MINUS, MIN, GameScore, TEAM_ABBRV,WIN])
             np_arr = np.array(players_list)
-            df = pd.DataFrame(players_list, columns=["id", "name", "PTS", "FG", "FGA", "FTA","FT","OREB", "DREB", "STL", "AST", "BLK", "PF", "TO", "PLUS_MINUS", "MIN", "GS", "WIN"])
-            df.to_csv(path_or_buf=f'./all_games_csv/{gameId}')
+            df = pd.DataFrame(players_list, columns=["id", "name", "PTS", "FG", "FGA", "FTA","FT","OREB", "DREB", "STL", "AST", "BLK", "PF", "TO", "PLUS_MINUS", "MIN", "GS", "TEAM_ABBREV", "WIN"])
+            df.to_csv(path_or_buf=f'./all_games_csv/{gameId}.csv')
 #             team, name, won/lost, scores, player id
 
 createGameScoreCSV("./all_games_jsons/all_games2013-14.json")
